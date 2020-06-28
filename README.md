@@ -1,2 +1,2 @@
 # django-polls
-A website for creating polls made in Django
+A place for creating polls made in Django
