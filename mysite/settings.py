@@ -25,7 +25,7 @@ SECRET_KEY = 'xyz' # os.environ['SECRET_KEY_DJANGO']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['raaj.pythonanywhere.com']
 
 
 # Application definition
