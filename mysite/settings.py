@@ -25,12 +25,14 @@ SECRET_KEY = 'xyz' # os.environ['SECRET_KEY_DJANGO']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['raaj.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','raaj.pythonanywhere.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'main.apps.MainConfig',
+    'register.apps.RegisterConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
