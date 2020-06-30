@@ -50,6 +50,11 @@
   <!-- Side navigation -->
   <div class="sidenav">
     <a href="/">Home</a>
+    {% if request.user.is_authenticated %}
+      <li><a href="/logout">Logout</a></li>
+    {% else %}
+    <li><a href="/login">Login</a></li>
+    {% endif %}
   </div>
 
   <!-- Page content -->

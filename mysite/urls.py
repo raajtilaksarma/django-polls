@@ -19,6 +19,7 @@ from register import views as v
 
 urlpatterns = [
     path('',include('main.urls')),
+    path('',include('django.contrib.auth.urls')),
     path('polls/', include('polls.urls')),
     path('register/', v.register, name="register"),
     path('admin/', admin.site.urls),
