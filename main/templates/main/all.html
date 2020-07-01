@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Poll page
+{% endblock %}
+
+{% load static %} 
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <h3>{{ question.question_text }}</a></h3>
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+{% endblock %}
