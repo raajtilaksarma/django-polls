@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from .models import Question, Choice
+from .models import Question, Choice, Votes
 from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -17,7 +17,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         """
-            Return the last 5 published questions
+            Return published questions
         """
         return Question.objects.filter(
             pub_date__lte = timezone.now()
@@ -41,6 +41,11 @@ class ResultsView(LoginRequiredMixin, generic.DetailView):
 @login_required
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
+    if Votes.objects.filter(question_id=question, user_id=request.user).exists():
+        return render(request, 'polls/detail.html', {
+        'question': question_id,
+        'error_message': "You have already voted for this question."
+        })
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
@@ -52,6 +57,9 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
+        # save vote
+        v = Votes(question_id = question, user_id=request.user)
+        v.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.

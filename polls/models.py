@@ -1,6 +1,8 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
@@ -20,3 +22,8 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
     def __str__(self):
         return self.choice_text
+
+
+class Votes(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
