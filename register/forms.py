@@ -9,4 +9,9 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username","email","password1","password2"]
+        help_texts = {
+            'username' : 'Required. 150 characters or fewer',
+            'password1' : 'a',
+            'password2' : 'Enter the same password as above , for verification'
+        }
         

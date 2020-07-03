@@ -8,6 +8,10 @@ Poll page
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+{% if alert %}
+    //whatever conditions and js code
+    alert('{{alert}}');
+{% endif %}
 
 
 {% if latest_question_list %}
