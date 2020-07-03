@@ -52,10 +52,11 @@
     <a href="/">Home</a>
     <a href="/all">All Polls</a>
     {% if request.user.is_authenticated %}
-      <li><a href="/polls">Vote</a></li>
-      <li><a href="/logout">Logout</a></li>
+      <a href="/polls">Vote</a>
+      <a href="/logout">Logout</a>
     {% else %}
-    <li><a href="/login">Login</a></li>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
     {% endif %}
   </div>
 
