@@ -8,12 +8,6 @@ Poll page
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-{% if alert %}
-    //whatever conditions and js code
-    alert('{{alert}}');
-{% endif %}
-
-
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
@@ -24,4 +18,15 @@ Poll page
     <p>No polls are available.</p>
 {% endif %}
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert" id='message_container'>{{ message }}</div>
+    {% endfor %}
+{% endif %}
+<script>
+    var message_ele = document.getElementById("message_container");
+    setTimeout(function(){ 
+    message_ele.style.display = "none"; 
+    }, 1000);
+</script>
 {% endblock %}

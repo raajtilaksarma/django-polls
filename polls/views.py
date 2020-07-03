@@ -48,7 +48,8 @@ def vote(request, question_id):
         # 'question': question,
         # 'error_message': "You have already voted for this question."
         # })
-        return redirect('/polls/',kwargs={"alert":"You have already voted for that question"})
+        messages.success(request, 'Already voted for the question')
+        return redirect('/polls/',permanent=True)
         # return HttpResponseRedirect('polls/index.html')
 
     try:
