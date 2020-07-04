@@ -14,7 +14,8 @@ Poll page
     <ul>
     {% for question in latest_question_list %}
         {% if question.choice_set.all %}
-            <h3>{{ question.question_text }}</a></h3>
+            <h3>{{ question.question_text }}</h3>
+            <h4>Posted by : {{ question.user_id}}</h4>
             {% for choice in question.choice_set.all %}
                 <li>{{ choice.choice_text }} -> {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
             {% endfor %}

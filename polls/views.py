@@ -79,7 +79,7 @@ def create(request):
         print('a')
         if form.is_valid():
             n = form.cleaned_data['name']
-            q = Question(question_text=n, pub_date=timezone.now())
+            q = Question(user_id=request.user, question_text=n, pub_date=timezone.now())
             q.save()      
             return HttpResponseRedirect('/polls/options/%i'%q.id)
     else:
@@ -89,6 +89,8 @@ def create(request):
 @login_required
 def options(request, id):
     ls = Question.objects.get(id=id)
+    if request.user != ls.user_id:
+        return redirect('/all/',permanent=True)
     if request.method =='POST':
         if request.POST.get('save'):
             for item in ls.choice_set.all():
