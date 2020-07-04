@@ -91,6 +91,11 @@ def options(request, id):
     ls = Question.objects.get(id=id)
     if request.method =='POST':
         if request.POST.get('save'):
+            for item in ls.choice_set.all():
+                p = request.POST
+                if "text"+str(item.id) in p:
+                    item.choice_text = p.get("text"+str(item.id))
+                item.save()
             return redirect('/all/', permanent=True)
         elif request.POST.get('add'):
             newChoice = request.POST.get('new')
