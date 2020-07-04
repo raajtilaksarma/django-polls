@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .models import Question, Choice, Votes
+from .forms import CreateListForm
 from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -70,3 +71,31 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+@login_required
+def create(request):
+    if request.method == "POST":
+        form = CreateListForm(request.POST)
+        print('a')
+        if form.is_valid():
+            n = form.cleaned_data['name']
+            q = Question(question_text=n, pub_date=timezone.now())
+            q.save()      
+            return HttpResponseRedirect('/polls/options/%i'%q.id)
+    else:
+        form = CreateListForm()
+    return render(request, 'polls/create.html',{"form":form})
+
+@login_required
+def options(request, id):
+    ls = Question.objects.get(id=id)
+    if request.method =='POST':
+        if request.POST.get('save'):
+            return redirect('/all/', permanent=True)
+        elif request.POST.get('add'):
+            newChoice = request.POST.get('new')
+            if newChoice != '':
+                ls.choice_set.create(choice_text = newChoice, votes = 0)
+            else:
+                print("Invalid choice")
+    return render(request, 'polls/options.html', {'ls':ls})
