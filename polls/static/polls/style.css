@@ -12,9 +12,3 @@ ul {
     list-style-position: outside;
     list-style-image: none;
   }
-
-.pollbar{
-    border: 5px solid #FF8A00 !important;
-    border-radius: 5px !important;
-    margin-left: 0;
-}

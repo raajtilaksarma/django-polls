@@ -10,16 +10,18 @@ Poll page
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"> -->
 
 
-{% if latest_question_list %}
+{% if ques %}
     <ul>
-    {% for question in latest_question_list %}
-        {% if question.choice_set.all %}
-            <h3>{{ question.question_text }}</h3>
-            <h4>Posted by : {{ question.user_id}}</h4>
-            {% for choice in question.choice_set.all %}
-                <li>{{ choice.choice_text }} -> {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-            {% endfor %}
-        {% endif %}
+    {% for question in ques %}
+        <h3>{{ question.question_text }}</h3>
+        <h4>Posted by : {{ question.user_id}}</h4>
+        {% for choice in question.choices %}
+            <li>{{ choice.choice_text }} : {{ choice.votes }} vote{{ choice.votes|pluralize }}
+                <hr width={{choice.perc}}% style="border: 5px solid #FF8A00 !important;
+            border-radius: 5px !important;
+            margin-left: 0;">
+            </li>
+        {% endfor %}
     {% endfor %}
     </ul>
 {% else %}
