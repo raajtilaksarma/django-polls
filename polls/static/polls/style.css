@@ -6,3 +6,9 @@ body {
     background: white url("images/background.jpg") no-repeat;
     background-size: cover;
 }
+
+ul {
+    list-style-type: circle;
+    list-style-position: outside;
+    list-style-image: none;
+  }
