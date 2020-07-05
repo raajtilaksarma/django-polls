@@ -4,4 +4,5 @@ li a {
 
 body {
     background: white url("images/background.jpg") no-repeat;
+    background-size: cover;
 }
