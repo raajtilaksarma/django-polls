@@ -7,23 +7,35 @@ Poll page
 {% load static %} 
 
 {% block content %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"> -->
-
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 80%;
+      padding: 20px;
+      margin: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+</style>
 
 {% if ques %}
-    <ul>
     {% for question in ques %}
+    <div class="card ">
         <h3>{{ question.question_text }}</h3>
-        <h4>Posted by : {{ question.user_id}}</h4>
+        <h5>Posted by : {{ question.user_id}}</h5>
         {% for choice in question.choices %}
-            <li>{{ choice.choice_text }} : {{ choice.votes }} vote{{ choice.votes|pluralize }}
+            {{ choice.choice_text }} : {{ choice.votes }} vote{{ choice.votes|pluralize }}
                 <hr width={{choice.perc}}% style="border: 5px solid #FF8A00 !important;
             border-radius: 5px !important;
             margin-left: 0;">
-            </li>
         {% endfor %}
+    </div>
+        
     {% endfor %}
-    </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}

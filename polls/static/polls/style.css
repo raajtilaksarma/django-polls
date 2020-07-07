@@ -12,3 +12,7 @@ ul {
     list-style-position: outside;
     list-style-image: none;
   }
+
+.card + .card {
+    margin: 0 0 8px 0;
+   }
