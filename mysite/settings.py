@@ -127,6 +127,10 @@ LOGIN_REDIRECT_URL = "/polls/"
 LOGOUT_REDIRECT_URL = "/"
 # STATIC_ROOT = '/home/raaj/django-polls/static/'
 
+#media settings
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
 # email settings
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

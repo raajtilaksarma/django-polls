@@ -5,12 +5,33 @@ My Profile
 
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+  body {
+    background: #fafafa;
+  }
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+  .account-heading {
+    font-size: 2.5rem;
+  }
+  .account-img {
+  height: 150px;
+  width: 150px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+</style>
     <div class="content-section">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <img class="rounded-circle account-img" src="{{ user.userprofile.image.url }}">
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">Email : {{ user.email }}</p>
+          <p class="text-secondary">{{ user.email }}</p>
         </div>
       </div>
     </div>
