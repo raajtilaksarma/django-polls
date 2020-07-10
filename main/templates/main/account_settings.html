@@ -29,14 +29,15 @@ My Profile
         text-decoration: none;
       }
 </style>
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.userprofile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
-      </div>
-      <a href="account/" class="button">Change Display Picture</a>
-    </div>
+
+
+<div class="card card-body">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+    <input class="btn btn-primary" type="submit" value="Update" name="Update Information">
+    </form>
+</div>
+
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
 {% endblock content %}

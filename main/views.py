@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import generic
 from django.utils import timezone
-from polls.models import Question, Choice, Votes
 from django.contrib.auth.decorators import login_required
-
+from polls.models import Question, Choice, Votes, UserProfile
+from .forms import UserForm
 
 # Create your views here.
 def home(request):
@@ -13,6 +13,20 @@ def home(request):
 def profile(request):
 	return render(request, "main/profile.html", {})
 
+@login_required
+def accountSettings(request):
+    user = request.user.userprofile
+    form = UserForm(instance=user)
+    print('first :', user.image.url)
+    if request.method =='POST':
+        form = UserForm(request.POST,request.FILES,instance=user)
+        if form.is_valid():
+            form.save()
+            print('second :', user.image.url)
+            return redirect('/profile/',permanent=True)
+    context = {'form':form}
+    return render(request, 'main/account_settings.html', context)
+    
 class AllView(generic.ListView):    
     template_name = 'main/all.html'
     context_object_name = 'question_list'
