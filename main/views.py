@@ -2,10 +2,16 @@ from django.shortcuts import render
 from django.views import generic
 from django.utils import timezone
 from polls.models import Question, Choice, Votes
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def home(request):
 	return render(request, "main/home.html", {})
+
+@login_required
+def profile(request):
+	return render(request, "main/profile.html", {})
 
 class AllView(generic.ListView):    
     template_name = 'main/all.html'
