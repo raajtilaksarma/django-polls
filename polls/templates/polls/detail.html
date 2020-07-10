@@ -7,21 +7,24 @@ Question page
 {% endblock %}
 
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
 <h1>{{ question.question_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% load crispy_forms_tags %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/radio-style.css' %}">
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
+<ul>
 {% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    <li>
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        <div class="check"></div>
+    </li>
 {% endfor %}
-<input type="submit" value="Vote">
-</form>
-
+<input class="button button5" type="submit" value="Vote">
+</ul>
 {% endblock %}

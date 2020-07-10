@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 
+
 {% block title %}
 Poll page
 {% endblock %}
@@ -7,7 +8,6 @@ Poll page
 {% load static %} 
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 <style>
     .card {
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -22,7 +22,7 @@ Poll page
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
 </style>
-
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 {% if ques %}
     {% for question in ques %}
     <div class="card ">
@@ -34,8 +34,7 @@ Poll page
             border-radius: 5px !important;
             margin-left: 0;">
         {% endfor %}
-    </div>
-        
+    </div> 
     {% endfor %}
 {% else %}
     <p>No polls are available.</p>

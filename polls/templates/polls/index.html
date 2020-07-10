@@ -7,13 +7,28 @@ Poll page
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/radio-style.css' %}">
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 80%;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+</style>
 {% if latest_question_list %}
-    <ul>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <div class="card">
+            <a href="{% url 'polls:detail' question.id %}" style="text-decoration: none;">
+                {{ question.question_text }}</a>
+        </div>
     {% endfor %}
-    </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
