@@ -4,11 +4,9 @@ My Profile
 {% endblock %}
 
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
 <style>
-  body {
-    background: #fafafa;
-  }
   .content-section {
     background: #ffffff;
     padding: 10px 20px;
@@ -29,14 +27,15 @@ My Profile
         text-decoration: none;
       }
 </style>
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.userprofile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
-      </div>
-      <a href="account/" class="button">Change Display Picture</a>
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<div class="content-section">
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.userprofile.image.url }}">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
     </div>
+  </div>
+  <a href="account/" class="button">Change Display Picture</a>
+</div>
 {% endblock content %}

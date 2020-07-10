@@ -2,8 +2,9 @@
 {% block title %}
 Create New List
 {% endblock %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 	<h3>Create a new Question</h3>
 	<br>
 	<form method="post", action={% url 'polls:create' %} class="form-group">
