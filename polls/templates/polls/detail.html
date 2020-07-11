@@ -18,13 +18,16 @@ Question page
 <form action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
 <ul>
-{% for choice in question.choice_set.all %}
+<div class="container">
+    <h2>{{ question.question_text }}</h2>
+    {% for choice in question.choice_set.all %}
     <li>
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-        <div class="check"></div>
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+        <div class="check"><div class="inside"></div></div>
     </li>
-{% endfor %}
-<input class="button button5" type="submit" value="Vote">
+    {% endfor %}
+    <input class="button button5" type="submit" value="Vote">
+</div>
 </ul>
 {% endblock %}
