@@ -74,7 +74,8 @@ ul li .check{
   left: 20px;
 	z-index: 5;
 	transition: border .25s linear;
-	-webkit-transition: border .25s linear;
+  -webkit-transition: border .25s linear;
+  box-sizing : unset !important;
 }
 
 ul li:hover .check {

@@ -24,7 +24,7 @@ Question page
     <li>
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
         <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-        <div class="check"><div class="inside"></div></div>
+        <div class="check"></div>
     </li>
     {% endfor %}
     <input class="button button5" type="submit" value="Vote">
