@@ -11,5 +11,5 @@ Building over the *official* [django tutorial](https://docs.djangoproject.com/en
 ### Demo 
 ![](https://github.com/raajtilaksarma/django-polls/blob/master/gif/demo.gif)
 
-### Try it out in the following link
-[polls](http://raaj.pythonanywhere.com/)
+### Try it out
+[DJANGO-POLLS](http://raaj.pythonanywhere.com/)
